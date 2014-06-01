@@ -1,0 +1,319 @@
+@charset "utf-8";
+
+@import "_extension_import.scss";
+
+body {
+	margin: 0 auto;
+	-webkit-text-size-adjust: none;
+	background: #fefefe;
+	width: es($base-width,px);
+	@include box-shadow(0 0 10px rgba(0,0,0,0.3));
+}
+
+#header,
+main,
+#footer {
+	text-align: left;
+	margin: 0 auto;
+	width: es($base-width);
+	position: relative;
+}
+
+$parallaxContent: unquote('#header'),unquote('#profile'),unquote('#jquery');
+
+$contentName: top,profile,jquery,footer;
+$contents: join($parallaxContent,unquote('#footer'));
+$contentbg: #38b0d9,#ece8e1,#216dab,#f7f5f2;
+
+#{$parallaxContent} {
+	height: 500px;
+}
+
+$i: 0;
+@each $content in $contents {
+	$i: $i + 1;
+	#{$content} {
+		@if isFile($images_dir + nth($contentName,$i) + '/' + 'bg.gif') == 'true' {
+			background: image-url(nth($contentName,$i) + '/' + 'bg.gif');
+	    } @else {
+		    background: nth($contentbg,$i);
+	    }
+	}
+}
+/*----------------------------------------
+	#gnav
+----------------------------------------*/
+#gnav {
+	position: fixed;
+	top: 50%;
+	right: 20px;
+	margin-top: -(15px * 3 +  13 * 2) / 2;
+	z-index: 2;
+	
+	h1 {
+		display: none;
+	}
+	
+	li {
+		margin-bottom: 13px;
+		position: relative;
+		
+		&:after {
+			@include triangle(7px 4px, #fff, right);
+			position: absolute;
+			top: 50%;
+			left: -10px;
+			margin-top: -5px;
+			display: none;
+		}
+		
+		&:before {
+			content: attr(title);
+			display: block;
+			width: es(95);
+			position: absolute;
+			left: es(-95 - 10);
+			top: 0;
+			@include fz(10);
+			background: #fff;
+			border-radius: 2px;
+			display: none;
+			@include box-shadow(1px 1px 2px rgba(0,0,0,0.2));
+		}
+		
+		&:hover:before,
+		&:hover:after {
+			display: block;
+		}
+		
+		&:hover a,
+		&.on a {
+			border-color: #fff;
+		}
+		
+		a {
+			display: block;
+			width: 13px;
+			height: 13px;
+			background: #fff;
+			border-radius: 100px;
+			text-indent: -100px;
+			overflow: hidden;
+			border: 3px solid transparent;
+			@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+		}
+		$i: 0;
+		@each $content in $contentName {
+				$i: $i + 1;
+			#{'&.' + $content + ' a'} {
+				background: nth($contentbg,$i);
+			}
+		}
+	}
+}
+
+
+/*----------------------------------------
+	header
+----------------------------------------*/
+#header {
+	h1 {
+		display: none;
+	}
+}
+
+.parts {
+	> * {
+		position: absolute;
+	}
+
+	$imgdir: "top/";
+	$parts: fileList( $images_dir + $imgdir + "parts/*",false,".png");
+	$partsTop: 17px, 60px,116px, 370px, 424px,309px,9px,237px;
+	$partsLeft: 904px, 864px, 897px, 459px, 435px, 398px,500px,760px;
+	$i: 0;
+	
+	@each $class in $parts {
+		$i: $i + 1;
+		#{"." + $class} {
+			top: nth($partsTop,$i);
+			left: nth($partsLeft,$i);
+		}
+	}
+		
+	$imgdir: "jquery/";
+	$parts: fileList($images_dir + $imgdir + "parts/*",false,".png");
+	$partsTop: -100px,300px;
+	$partsLeft: 300px,100px;
+	$i: 0;
+	@each $class in $parts {
+		$i: $i + 1;
+		#{"." + $class} {
+			top: nth($partsTop,$i);
+			left: nth($partsLeft,$i);
+		}
+	}
+}
+
+.kamem {
+	color: #fff;
+	> * {
+		position: absolute;
+	} 
+	dt {
+		left: 100px;
+		top: 86px;
+		@include fz(18);
+		letter-spacing: es(2)
+	}
+	.name {
+		width: 415px;
+		left: 101px;
+		top: 123px;
+		@include fz(65);
+		line-height: 1;
+		padding-bottom: 5px;
+		border-bottom: 1px solid rgba(255,255,255,0.4);
+		letter-spacing: es(5);
+	}
+	.text {
+		left: 100px;
+		top: 212px;
+		@include fz(14);
+	}
+}
+
+.sns {
+	position: absolute;
+	left: 92px;
+	top: 308px;
+	display: none;
+}
+
+/*----------------------------------------
+	content
+----------------------------------------*/
+$imgdir: "profile/";
+#profile {
+	position: relative;
+	z-index: 1;
+	
+	h2 {
+		display: none;
+	}
+	
+	&:before,
+	&:after {
+		content:'';
+		display: block;
+		position: absolute;
+	}
+	
+	&:before {
+		@include background-fit('profile/profile_top.png');
+		top: -105px;
+	}
+	&:after {
+		@include background-fit('profile/profile_bottom.png');
+		bottom: -60px;
+	}
+
+	section {
+		padding: 45px 50px;
+		margin: 0 50px 20px;
+		background: rgba(255,255,255,0.8);
+		@include border-radius(4px);
+		overflow: hidden;
+		position: relative;
+		background-position: right -30px;
+		background-repeat: no-repeat ;
+		top: 25px;
+		@include box-shadow(0 0 15px rgba(0,0,0,0.1));
+		
+		opacity: 0;
+				
+		$contentName: info,service;
+		@each $content in $contentName {
+			#{'&#' + $content} {
+				background-image: image-url($imgdir + $content + '_bg.png');
+			}
+		}
+
+		h3 {
+			padding-bottom: 5px;
+			border-bottom: 2px solid #f0ede8;
+			margin-bottom: 30px;
+			font-weight: bold;
+		}
+	}
+}
+
+#jquery {
+	overflow: hidden;
+	position: relative;
+	h2 {
+		margin: 90px 0 50px 50px;
+		@include background-fit('jquery/title.png');
+	}
+	ul {
+		margin: 0 50px;
+		li {
+			width: 450px;
+			 display: inline-block;
+			 text-align: left;
+			 float: left;
+			 line-height: es(30);
+			 
+			 a {
+				 color: #fff;
+				 @include background-fit('jquery/develo.png');
+				 padding-left: $imgWidth + 10;
+			 }
+		}	
+	}
+}
+
+$num: 3;
+.link {
+	li {
+		margin-bottom: 40px;
+		float: left;
+		width: 200px;
+		background-repeat: no-repeat;
+		background-position: left center;
+		a {
+			display: block;
+			background-repeat: no-repeat;
+			background-position: left center;
+			padding-left: 30px;
+		}
+				
+		@for $i from 1 through $num {
+			#{'&:nth-last-of-type(' + $i + ')'} {
+				margin-bottom: 0;
+			}
+		}
+
+		$ico: home, twitter, facebook, mixi, flickr,github, delicious, booklog;
+		@each $class in $ico {
+			$i: $i + 1;
+			#{"&." + $class + ' a'} {
+				background-image: image-url($imgdir + $class + '.png');
+			}
+		}
+		
+		&.mail {
+			padding-left: 30px;
+			background-image: image-url($imgdir + 'mail.png');
+		}
+	}
+}
+
+/*----------------------------------------
+footer
+----------------------------------------*/
+#footer {
+	padding: 1em;
+	text-align: center;
+	@include box-sizing(border-box);
+}

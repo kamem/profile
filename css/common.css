@@ -23,11 +23,11 @@ main,
 }
 
 #header {
-  background: url('/img/top/bg.gif?1401637701');
+  background: url('../img/top/bg.gif?1401637701');
 }
 
 #profile {
-  background: url('/img/profile/bg.gif?1401637585');
+  background: url('../img/profile/bg.gif?1401637585');
 }
 
 #jquery {
@@ -220,7 +220,7 @@ main,
   position: absolute;
 }
 #profile:before {
-  background: url('/img/profile/profile_top.png?1401637708') 0 0 no-repeat;
+  background: url('../img/profile/profile_top.png?1401637708') 0 0 no-repeat;
   text-indent: -9999px;
   overflow: hidden;
   width: 1000px;
@@ -232,7 +232,7 @@ main,
   top: -105px;
 }
 #profile:after {
-  background: url('/img/profile/profile_bottom.png?1401637681') 0 0 no-repeat;
+  background: url('../img/profile/profile_bottom.png?1401637681') 0 0 no-repeat;
   text-indent: -9999px;
   overflow: hidden;
   width: 1000px;
@@ -263,10 +263,10 @@ main,
   opacity: 0;
 }
 #profile section#info {
-  background-image: url('/img/profile/info_bg.png?1401637701');
+  background-image: url('../img/profile/info_bg.png?1401637701');
 }
 #profile section#service {
-  background-image: url('/img/profile/service_bg.png?1401638115');
+  background-image: url('../img/profile/service_bg.png?1401638115');
 }
 #profile section h3 {
   padding-bottom: 5px;
@@ -281,7 +281,7 @@ main,
 }
 #jquery h2 {
   margin: 90px 0 50px 50px;
-  background: url('/img/jquery/title.png?1401637588') 0 0 no-repeat;
+  background: url('../img/jquery/title.png?1401637588') 0 0 no-repeat;
   text-indent: -9999px;
   overflow: hidden;
   width: 225px;
@@ -293,6 +293,8 @@ main,
 }
 #jquery ul {
   margin: 0 50px;
+  position: relative;
+  z-index: 2;
 }
 #jquery ul li {
   width: 450px;
@@ -300,19 +302,31 @@ main,
   text-align: left;
   float: left;
   line-height: 3rem;
+  font-size: 14px;
+  font-size: 1.4rem;
 }
 #jquery ul li a {
   color: #fff;
-  background: url('/img/jquery/develo.png?1401637588') 0 0 no-repeat;
-  text-indent: -9999px;
-  overflow: hidden;
-  width: 16px;
-  height: 16px;
+  background: url('../img/jquery/develo.png?1401637588') no-repeat left center;
   -webkit-background-size: 16px 16px;
   -moz-background-size: 16px 16px;
   -o-background-size: 16px 16px;
   background-size: 16px 16px;
   padding-left: 26px;
+  vertical-align: middle;
+}
+#jquery ul li a.github {
+  padding: 0 0.5em 0 0;
+  display: inline-block;
+  background: url('../img/jquery/github.png?1401638122') 0 0 no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 22px;
+  height: 21px;
+  -webkit-background-size: 22px 21px;
+  -moz-background-size: 22px 21px;
+  -o-background-size: 22px 21px;
+  background-size: 22px 21px;
 }
 
 .link li {
@@ -338,32 +352,32 @@ main,
   margin-bottom: 0;
 }
 .link li.home a {
-  background-image: url('/img/profile/home.png?1401637705');
+  background-image: url('../img/profile/home.png?1401637705');
 }
 .link li.twitter a {
-  background-image: url('/img/profile/twitter.png?1401638127');
+  background-image: url('../img/profile/twitter.png?1401638127');
 }
 .link li.facebook a {
-  background-image: url('/img/profile/facebook.png?1401638124');
+  background-image: url('../img/profile/facebook.png?1401638124');
 }
 .link li.mixi a {
-  background-image: url('/img/profile/mixi.png?1401638127');
+  background-image: url('../img/profile/mixi.png?1401638127');
 }
 .link li.flickr a {
-  background-image: url('/img/profile/flickr.png?1401637703');
+  background-image: url('../img/profile/flickr.png?1401637703');
 }
 .link li.github a {
-  background-image: url('/img/profile/github.png?1401637704');
+  background-image: url('../img/profile/github.png?1401637704');
 }
 .link li.delicious a {
-  background-image: url('/img/profile/delicious.png?1401637703');
+  background-image: url('../img/profile/delicious.png?1401637703');
 }
 .link li.booklog a {
-  background-image: url('/img/profile/booklog.png?1401637681');
+  background-image: url('../img/profile/booklog.png?1401637681');
 }
 .link li.mail {
   padding-left: 30px;
-  background-image: url('/img/profile/mail.png?1401637705');
+  background-image: url('../img/profile/mail.png?1401637705');
 }
 
 /*----------------------------------------

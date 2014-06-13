@@ -257,17 +257,27 @@ $imgdir: "profile/";
 	}
 	ul {
 		margin: 0 50px;
+		position: relative;
+		z-index: 2;
 		li {
 			width: 450px;
 			 display: inline-block;
 			 text-align: left;
 			 float: left;
 			 line-height: es(30);
+			 @include fz(14);
 			 
 			 a {
 				 color: #fff;
-				 @include background-fit('jquery/develo.png');
+				 @include background-fit('jquery/develo.png',false,'no-repeat left center');
 				 padding-left: $imgWidth + 10;
+				 vertical-align: middle;
+			 }
+			 
+			 a.github {
+			 	padding: 0 0.5em 0 0;
+				display: inline-block;
+				@include background-fit('jquery/github.png');
 			 }
 		}	
 	}
